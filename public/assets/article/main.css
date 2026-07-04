@@ -2544,3 +2544,11 @@ body.is-instant::after {
     display: block;
   }
 }
+.text-component.style-14 {
+  font-family: 'Instrument Sans', sans-serif !important;
+  letter-spacing: 0.425rem !important;
+  width: calc(100% + 0.425rem) !important;
+  font-size: 4.5em !important;
+  line-height: 0.75 !important;
+  font-weight: 700 !important;
+}

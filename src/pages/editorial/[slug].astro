@@ -24,10 +24,6 @@ const hasHeroMusic =
   post.data.music?.platform === 'bandcamp' &&
   post.data.music?.embed &&
   post.data.music?.placement === 'hero';
-
-const hasBodyMusic =
-  post.data.music &&
-  post.data.music.placement === 'body';
 ---
 
 <BaseLayout
@@ -38,57 +34,106 @@ const hasBodyMusic =
   js="/assets/article/main.js"
   noscript="/assets/article/noscript.css"
 >
-  <main class="ums-article">
-    <a class="ums-back-link" href="/editorial">← Editorial</a>
+  <div class="site-wrapper">
+    <div class="site-main" role="main">
+      <div class="inner">
 
-    <section class="ums-article-hero">
-      {post.data.image && (
-        <img
-          class="ums-article-image"
-          src={post.data.image}
-          alt={post.data.title}
-        />
-      )}
+        <hr id="divider07" class="divider-component instance-7 style-7">
 
-      {hasHeroMusic && (
-        <iframe
-          class="ums-music-embed ums-music-embed--hero"
-          src={post.data.music.embed}
-          seamless
-        ></iframe>
-      )}
-    </section>
+        <div id="container01" class="container-component instance-1 style-1 columns">
+          <div class="wrapper">
+            <div class="inner" data-onvisible-trigger="1">
+              <div>
+                <h1 id="text40" class="text-component instance-40 style-14">UNDERGROUND</h1>
+                <h2 id="text02" class="text-component instance-2 style-18">MUSIC</h2>
+                <h1 id="text03" class="text-component instance-3 style-16">SQUAD</h1>
+              </div>
+              <div>
+                <h1 id="text41" class="text-component instance-41 style-19">SINCE 2020</h1>
+                <h1 id="text42" class="text-component instance-42 style-20">SINCE 2020</h1>
+                <h1 id="text43" class="text-component instance-43 style-21">SINCE 2020</h1>
+                <h1 id="text08" class="text-component instance-8 style-22">SINCE 2020</h1>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <section class="ums-article-meta">
-      <p>{formattedDate}</p>
-      <p>{post.data.category}</p>
-      <p>{post.data.genres.join(' / ')}</p>
-    </section>
+        <ul id="buttons02" class="buttons-component instance-2 style-3">
+          <li>
+            <a href="/editorial" class="n01" role="button">EDITORIAL</a>
+          </li>
+        </ul>
 
-    <h1 class="ums-article-title">{post.data.title}</h1>
+        <div id="container02" class="container-component instance-2 style-3 columns">
+          <div class="wrapper">
+            <div class="inner" data-onvisible-trigger="1">
 
-    <p class="ums-article-description">
-      {post.data.description}
-    </p>
+              <div>
+                {post.data.genres.map((genre) => (
+                  <h1 class="text-component instance-94 style-26">{genre}</h1>
+                ))}
 
-    <article class="ums-article-body">
-      <Content />
-    </article>
+                <div id="table01" class="table-component instance-1">
+                  <div class="inner">
+                    <table>
+                      <tbody>
+                        {['E','D','I','T','O','R','I','A','L'].map((letter) => (
+                          <tr><td>{letter}</td></tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
 
-    {hasBodyMusic && (
-      <section class="ums-music-body">
-        {post.data.music.embed ? (
-          <iframe
-            class="ums-music-embed"
-            src={post.data.music.embed}
-            seamless
-          ></iframe>
-        ) : (
-          <a href={post.data.music.url} target="_blank">
-            Listen on {post.data.music.platform} →
-          </a>
-        )}
-      </section>
-    )}
-  </main>
+              <div>
+                <p id="text82" class="text-component instance-82 style-23">ENTRY 003</p>
+                <p id="text01" class="text-component instance-1 style-9">{formattedDate}</p>
+
+                <h1 id="text39" class="text-component instance-39 style-25">
+                  {post.data.title}
+                </h1>
+
+                <p id="text44" class="text-component instance-44 style-4">
+                  {post.data.description}
+                </p>
+
+                {post.data.image && (
+                  <div id="image07" class="image-component instance-7 style-1">
+                    <span class="frame">
+                      <img src={post.data.image} alt={post.data.title} />
+                    </span>
+                  </div>
+                )}
+
+                {hasHeroMusic && (
+                  <div id="audio02" class="audio-component instance-2">
+                    <div class="frame">
+                      <iframe src={post.data.music.embed}></iframe>
+                    </div>
+                  </div>
+                )}
+
+                <p id="text33" class="text-component instance-33 style-9">
+                  {post.data.category}
+                </p>
+
+                <div class="ums-article-content text-component instance-44 style-4">
+  <Content />
+</div>
+
+                <ul id="links06" class="links-component instance-6">
+                  <li class="n01">
+                    <a href="/editorial">Back to Editorial →</a>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </BaseLayout>
