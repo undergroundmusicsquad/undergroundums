@@ -2559,7 +2559,7 @@ body.is-instant::after {
 @media (max-width: 640px) {
 
   .text-component.style-14 {
-    font-size: 2.3em !important;
+    font-size: 1.5em !important;
     letter-spacing: 0.15rem !important;
     width: auto !important;
     line-height: 0.9 !important;
