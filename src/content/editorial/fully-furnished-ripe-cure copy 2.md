@@ -1,7 +1,7 @@
 ---
 topLabel: "ENTRY 007"
 title: "Track Of The Day"
-description: "Fully Furnished - Ripe Cure 2"
+description: "Fully Furnished - Ripe Cure 3"
 date: 2026-07-04
 
 category: track-of-the-day

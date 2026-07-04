@@ -2224,7 +2224,6 @@
 		};
 	
 	// Initialize "On Visible" animations.
-		onvisible.add('.text-component.style-26', { style: 'fade-in', speed: 750, intensity: 0, threshold: 3, delay: 0, stagger: 125, staggerSelector: ':scope > *', state: true, replay: false });
 		onvisible.add('.container-component.style-1', { style: 'wipe-reverse-diagonal', speed: 750, intensity: 5, threshold: 3, delay: 0, state: true, replay: false });
 		onvisible.add('.text-component.style-14', { style: 'fade-in', speed: 750, intensity: 0, threshold: 3, delay: 0, stagger: 125, staggerSelector: ':scope > *', state: true, replay: false });
 		onvisible.add('.text-component.style-19', { style: 'fade-in', speed: 750, intensity: 0, threshold: 3, delay: 0, stagger: 125, staggerSelector: ':scope > *', state: true, replay: false });
@@ -2233,15 +2232,20 @@
 		onvisible.add('.text-component.style-22', { style: 'fade-in', speed: 750, intensity: 0, threshold: 3, delay: 0, stagger: 125, staggerSelector: ':scope > *', state: true, replay: false });
 		onvisible.add('.text-component.style-18', { style: 'fade-in', speed: 750, intensity: 0, threshold: 3, delay: 0, stagger: 125, staggerSelector: ':scope > *', state: true, replay: false });
 		onvisible.add('.text-component.style-16', { style: 'fade-in', speed: 750, intensity: 0, threshold: 3, delay: 0, stagger: 125, staggerSelector: ':scope > *', state: true, replay: false });
-		onvisible.add('.text-component.style-23', { style: 'fade-in', speed: 750, intensity: 0, threshold: 3, delay: 0, stagger: 125, staggerSelector: ':scope > *', state: true, replay: false });
-		onvisible.add('.text-component.style-9', { style: 'fade-in', speed: 750, intensity: 0, threshold: 3, delay: 0, stagger: 125, staggerSelector: ':scope > *', state: true, replay: false });
-		onvisible.add('.text-component.style-25', { style: 'fade-in', speed: 750, intensity: 0, threshold: 3, delay: 0, stagger: 125, staggerSelector: ':scope > *', state: true, replay: false });
-		onvisible.add('.text-component.style-4', { style: 'fade-in', speed: 750, intensity: 0, threshold: 3, delay: 0, stagger: 125, staggerSelector: ':scope > *', state: true, replay: false });
-		onvisible.add('.image-component.style-1', { style: 'wipe-diagonal', speed: 1000, intensity: 5, threshold: 3, delay: 0, state: true, replay: false });
-		onvisible.add('.text-component.style-6', { style: 'fade-in', speed: 750, intensity: 0, threshold: 3, delay: 0, state: true, replay: false });
-		onvisible.add('.buttons-component.style-3', { style: 'flip-right', speed: 750, intensity: 5, threshold: 3, delay: 0, stagger: 125, staggerSelector: ':scope > li', state: true, replay: false });
+		onvisible.add('.text-component.style-1', { style: 'fade-in', speed: 750, intensity: 0, threshold: 3, delay: 0, stagger: 125, staggerSelector: ':scope > *', state: true, replay: false });
 		onvisible.add('.container-component.style-3', { style: 'wipe-reverse-diagonal', speed: 750, intensity: 5, threshold: 3, delay: 0, state: true, replay: false });
+		onvisible.add('.text-component.style-3', { style: 'fade-in', speed: 750, intensity: 0, threshold: 3, delay: 0, state: true, replay: false });
+		onvisible.add('.buttons-component.style-1', { style: 'flip-right', speed: 750, intensity: 5, threshold: 3, delay: 0, stagger: 125, staggerSelector: ':scope > li', state: true, replay: false });
+		onvisible.add('.text-component.style-9', { style: 'fade-in', speed: 750, intensity: 0, threshold: 3, delay: 0, stagger: 125, staggerSelector: ':scope > *', state: true, replay: false });
+		onvisible.add('.text-component.style-15', { style: 'fade-in', speed: 750, intensity: 0, threshold: 3, delay: 0, stagger: 125, staggerSelector: ':scope > *', state: true, replay: false });
+		onvisible.add('.text-component.style-4', { style: 'fade-in', speed: 750, intensity: 0, threshold: 3, delay: 0, stagger: 125, staggerSelector: ':scope > *', state: true, replay: false });
+		onvisible.add('.text-component.style-23', { style: 'fade-in', speed: 750, intensity: 0, threshold: 3, delay: 0, stagger: 125, staggerSelector: ':scope > *', state: true, replay: false });
 		onvisible.add('.text-component.style-12', { style: 'fade-in', speed: 750, intensity: 0, threshold: 3, delay: 0, stagger: 125, staggerSelector: ':scope > *', state: true, replay: false });
+		onvisible.add('.text-component.style-8', { style: 'fade-in', speed: 750, intensity: 0, threshold: 3, delay: 0, stagger: 125, staggerSelector: ':scope > *', state: true, replay: false });
+		onvisible.add('.text-component.style-5', { style: 'fade-in', speed: 750, intensity: 0, threshold: 3, delay: 0, stagger: 125, staggerSelector: ':scope > *', state: true, replay: false });
+		onvisible.add('.text-component.style-6', { style: 'fade-in', speed: 750, intensity: 0, threshold: 3, delay: 0, state: true, replay: false });
+		onvisible.add('.text-component.style-11', { style: 'fade-in', speed: 750, intensity: 0, threshold: 3, delay: 0, stagger: 125, staggerSelector: ':scope > *', state: true, replay: false });
+		onvisible.add('.text-component.style-10', { style: 'fade-in', speed: 750, intensity: 0, threshold: 3, delay: 0, stagger: 125, staggerSelector: ':scope > *', state: true, replay: false });
 	
 	// Run ready handlers.
 		ready.run();

@@ -2559,7 +2559,7 @@ body.is-instant::after {
 @media (max-width: 640px) {
 
   .text-component.style-14 {
-    font-size: 1.5em !important;
+    font-size: 1.625em !important;
     letter-spacing: 0.15rem !important;
     width: auto !important;
     line-height: 0.9 !important;
@@ -2572,4 +2572,18 @@ body.is-instant::after {
     width: auto !important;
   }
 
+}
+
+
+
+
+
+.editorial-list-item {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+}
+
+.editorial-list-item + .editorial-list-item {
+  margin-top: 4rem;
 }

@@ -1,14 +1,48 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('editorial', ({ data }) => !data.draft);
+
+const sortedPosts = posts.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+const [post, ...otherPosts] = sortedPosts;
+
+const leftPosts = otherPosts.filter((_, i) => i % 2 === 0);
+const rightPosts = otherPosts.filter((_, i) => i % 2 === 1);
+
+const categoryLabels = {
+  'track-of-the-day': 'Track of the Day',
+  'track-of-the-week': 'Track of the Week',
+  'track-of-the-month': 'Track of the Month',
+  interview: 'Interview',
+  review: 'Review',
+  'featured-album': 'Featured Album',
+};
+
+const formatDate = (date) =>
+  date.toLocaleDateString('en-US', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  });
 ---
 
-<BaseLayout
-  title="Editorial | Underground Music Squad"
-  css="/assets/editorial/main.css"
-  js="/assets/editorial/main.js"
-  noscript="/assets/editorial/noscript.css"
->
 
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>Underground Music Squad - Editorial</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<meta name="color-scheme" content="light only" />
+		<meta name="description" content="synthpop, psychedelic, postpunk, synthwave, dreampop, shoegaze, darkwave" />
+		<link href="https://fonts.googleapis.com/css2?display=swap&family=Instrument+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Inter:ital,wght@0,400;1,400" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="/assets/editorial/main.css" />
+		<noscript><link rel="stylesheet" href="/assets/editorial/noscript.css" /></noscript>
+	</head>
+	<body>
 		<div class="site-wrapper">
 			<div class="site-main" role="main">
 				<div class="inner">
@@ -32,7 +66,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 					</div>
 					<ul id="buttons02" class="buttons-component instance-2 style-3">
 						<li>
-							<a href="/editorial" class="n01" role="button">EDITORIAL</a>
+							<a href="https://undergroundjournal.crd.co/" class="n01" role="button">EDITORIAL</a>
 						</li>
 					</ul>
 					<div id="container02" class="container-component instance-2 style-3 columns">
@@ -49,24 +83,51 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 									<h1 id="text85" class="text-component instance-85 style-26">Darkwave</h1>
 								</div>
 								<div>
-									<p id="text82" class="text-component instance-82 style-23">ENTRY 003</p>
-									<p id="text38" class="text-component instance-38 style-9">29 jun 2026</p>
-									<h1 id="text39" class="text-component instance-39 style-25">Interview with some artist Interview with some artist</h1>
-									<p id="text44" class="text-component instance-44 style-4">Artist gave us interview. Interview with some artist Interview with some artist</p>
+									
+
+                                    {post.data.topLabel && (
+                    <p id="text82" class="text-component instance-82 style-23">
+    {post.data.topLabel}
+  </p>
+)}
+                                    
+                                    
+									<p id="text38" class="text-component instance-38 style-9">{formatDate(post.data.date)}</p>
+									<h1 id="text39" class="text-component instance-39 style-25">{post.data.title}</h1>
+									<p id="text44" class="text-component instance-44 style-4">{post.data.description}</p>
 									<div id="image07" class="image-component instance-7 style-1">
-										<span class="frame"><img src="assets/images/image07.jpg" alt="" /></span>
+										<span class="frame"><img src={post.data.image} alt={post.data.title} /></span>
 									</div>
-									<div id="audio02" class="audio-component instance-2">
-										<div class="frame">
-											<iframe src="https://bandcamp.com/EmbeddedPlayer/transparent=true/track=2740131981/album=3325921223/size=small/bgcol=ffffff/linkcol=0687f5"></iframe>
-										</div>
-									</div>
-									<p id="text47" class="text-component instance-47 style-9">Interview</p>
-									<p id="text45" class="text-component instance-45 style-6"><span class="p"><em>SYNTHPOP<br />NEWWAVE<br />POSTPUNK</em></span></p>
-									<p id="text75" class="text-component instance-75 style-23">ENTRY 003</p>
+									
+											{post.data.music?.embed && (
+  <div id="audio02" class="audio-component instance-2">
+    <div class="frame">
+      <iframe src={post.data.music.embed}></iframe>
+    </div>
+  </div>
+)}
+									
+									
+									<p id="text47" class="text-component instance-47 style-9">{categoryLabels[post.data.category]}</p>
+									<p id="text45" class="text-component instance-45 style-6"><span class="p">
+                                    <em>
+                                    {post.data.genres.map((genre) => (
+                                     <>
+                                     {genre}<br />
+                                      </>
+                                     ))}
+                                    </em></span></p>
+									
+{post.data.bottomLabel && (
+  <p id="text75" class="text-component instance-75 style-23">
+    {post.data.bottomLabel}
+  </p>
+)}
+
+
 									<ul id="links08" class="links-component instance-8">
 										<li class="n01">
-											<a href="/editorial">Read ⟶</a>
+											<a href={`/editorial/${post.id}`}>Read ⟶</a>
 										</li>
 									</ul>
 								</div>
@@ -77,160 +138,332 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 						<div class="wrapper">
 							<div class="inner" data-onvisible-trigger="1">
 								<div>
-									<hr id="divider03" class="divider-component instance-3 style-3">
-									<div id="table01" class="table-component instance-1">
-										<div class="inner">
-											<table>
-												<tbody>
-													<tr>
-														<td>E</td>
-													</tr>
-													<tr>
-														<td>D</td>
-													</tr>
-													<tr>
-														<td>I</td>
-													</tr>
-													<tr>
-														<td>T</td>
-													</tr>
-													<tr>
-														<td>O</td>
-													</tr>
-													<tr>
-														<td>R</td>
-													</tr>
-													<tr>
-														<td>I</td>
-													</tr>
-													<tr>
-														<td>A</td>
-													</tr>
-													<tr>
-														<td>L</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>
+									
 								</div>
 								<div>
-									<p id="text04" class="text-component instance-4 style-9">29 jun 2026</p>
-									<h1 id="text15" class="text-component instance-15 style-12">Interview with some artist</h1>
-									<p id="text26" class="text-component instance-26 style-4">Artist gave us interview blalala lalal ululu</p>
+                                
+                                
+
+									<p id="text04" class="text-component instance-4 style-9">
+                                    {formatDate(leftPosts[0].data.date)}
+                                    </p>
+									<h1 id="text15" class="text-component instance-15 style-12">
+                                    {leftPosts[0].data.title}
+                                    </h1>
+									<p id="text26" class="text-component instance-26 style-4">
+                                    {leftPosts[0].data.description}
+                                    </p>
 									<div id="image04" class="image-component instance-4 style-1">
-										<span class="frame"><img src="assets/images/image04.jpg" alt="" /></span>
-									</div>
-									<div id="audio04" class="audio-component instance-4">
-										<div class="frame">
-											<iframe src="https://bandcamp.com/EmbeddedPlayer/transparent=true/track=2740131981/album=3325921223/size=small/bgcol=ffffff/linkcol=0687f5"></iframe>
-										</div>
-									</div>
-									<p id="text01" class="text-component instance-1 style-6"><span class="p"><em>SYNTHPOP<br />NEWWAVE<br />POSTPUNK</em></span></p>
-									<p id="text33" class="text-component instance-33 style-9">Interview</p>
+
+										<span class="frame">
+                                        <img src={leftPosts[0].data.image} alt={leftPosts[0].data.title} />
+                                        </span> 
+									
+                                    </div>
+
+
+                                
+									{leftPosts[0].data.music?.embed && (
+  <div id="audio04" class="audio-component instance-4">
+    <div class="frame">
+      <iframe src={leftPosts[0].data.music.embed}></iframe>
+    </div>
+  </div>
+)}
+									<p id="text01" class="text-component instance-1 style-6"><span class="p">
+                                    <em>
+                                      {leftPosts[0].data.genres.map((genre) => (
+                                        <>
+                                          {genre}<br />
+                                        </>
+                                      ))}
+                                    </em>
+                                    </span></p>
+									<p id="text33" class="text-component instance-33 style-9">{categoryLabels[leftPosts[0].data.category]}</p>
 									<ul id="links06" class="links-component instance-6">
 										<li class="n01">
-											<a href="/editorial">Read ⟶</a>
+											<a href={`/editorial/${leftPosts[0].id}`}>Read ⟶</a>
 										</li>
 									</ul>
-									<p id="text48" class="text-component instance-48 style-23">CATALOG 2026</p>
-									<p id="text12" class="text-component instance-12 style-9">21 jun 2026</p>
-									<h1 id="text13" class="text-component instance-13 style-12">Best songs this week</h1>
-									<p id="text16" class="text-component instance-16 style-4">Curated collection of best songs of the week</p>
-									<div id="image05" class="image-component instance-5 style-1">
-										<span class="frame"><img src="assets/images/image05.jpg" alt="" /></span>
-									</div>
-									<div id="audio05" class="audio-component instance-5">
-										<div class="frame">
-											<iframe src="https://bandcamp.com/EmbeddedPlayer/transparent=true/track=2740131981/album=3325921223/size=small/bgcol=ffffff/linkcol=0687f5"></iframe>
-										</div>
-									</div>
-									<p id="text17" class="text-component instance-17 style-6"><span class="p"><em>postpunk<br />newwave<br />darkwave</em></span></p>
-									<p id="text19" class="text-component instance-19 style-9">Weekly picks</p>
-									<ul id="links03" class="links-component instance-3">
-										<li class="n01">
-											<a href="/editorial">Read ⟶</a>
-										</li>
-									</ul>
-									<p id="text20" class="text-component instance-20 style-23">ENTRY 003</p>
-									<p id="text28" class="text-component instance-28 style-9">21 jun 2026</p>
-									<h1 id="text06" class="text-component instance-6 style-12">Best songs this week</h1>
-									<p id="text34" class="text-component instance-34 style-4">Curated collection of best songs of the week</p>
-									<div id="image03" class="image-component instance-3 style-1">
-										<span class="frame"><img src="assets/images/image03.jpg" alt="" /></span>
-									</div>
-									<div id="audio03" class="audio-component instance-3">
-										<div class="frame">
-											<iframe src="https://bandcamp.com/EmbeddedPlayer/transparent=true/track=2740131981/album=3325921223/size=small/bgcol=ffffff/linkcol=0687f5"></iframe>
-										</div>
-									</div>
-									<p id="text35" class="text-component instance-35 style-6"><span class="p"><em>postpunk<br />newwave<br />darkwave</em></span></p>
-									<p id="text36" class="text-component instance-36 style-9">Weekly picks</p>
-									<ul id="links04" class="links-component instance-4">
-										<li class="n01">
-											<a href="https://undergroundjournal.crd.co/">Read ⟶</a>
-										</li>
-									</ul>
-									<p id="text37" class="text-component instance-37 style-23">ENTRY 003</p>
+									{leftPosts[0].data.topLabel && (
+                                      <p id="text48" class="text-component instance-48 style-23">
+                                        {leftPosts[0].data.topLabel}
+                                      </p>
+)}
+
+
+<p id="text12" class="text-component instance-12 style-9">
+  {formatDate(leftPosts[1].data.date)}
+</p>
+
+<h1 id="text13" class="text-component instance-13 style-12">
+  {leftPosts[1].data.title}
+</h1>
+
+<p id="text16" class="text-component instance-16 style-4">
+  {leftPosts[1].data.description}
+</p>
+
+<div id="image05" class="image-component instance-5 style-1">
+  <span class="frame">
+    <img src={leftPosts[1].data.image} alt={leftPosts[1].data.title} />
+  </span>
+</div>
+
+{leftPosts[1].data.music?.embed && (
+  <div id="audio05" class="audio-component instance-5">
+    <div class="frame">
+      <iframe src={leftPosts[1].data.music.embed}></iframe>
+    </div>
+  </div>
+)}
+
+<p id="text17" class="text-component instance-17 style-6">
+  <span class="p">
+    <em>
+      {leftPosts[1].data.genres.map((genre) => (
+        <>
+          {genre}<br />
+        </>
+      ))}
+    </em>
+  </span>
+</p>
+
+<p id="text19" class="text-component instance-19 style-9">
+  {categoryLabels[leftPosts[1].data.category]}
+</p>
+
+<ul id="links03" class="links-component instance-3">
+  <li class="n01">
+    <a href={`/editorial/${leftPosts[1].id}`}>Read ⟶</a>
+  </li>
+</ul>
+
+{leftPosts[1].data.topLabel && (
+  <p id="text20" class="text-component instance-20 style-23">
+    {leftPosts[1].data.topLabel}
+  </p>
+)}
+									<p id="text28" class="text-component instance-28 style-9">
+  {formatDate(leftPosts[2].data.date)}
+</p>
+
+<h1 id="text06" class="text-component instance-6 style-12">
+  {leftPosts[2].data.title}
+</h1>
+
+<p id="text34" class="text-component instance-34 style-4">
+  {leftPosts[2].data.description}
+</p>
+
+<div id="image03" class="image-component instance-3 style-1">
+  <span class="frame">
+    <img src={leftPosts[2].data.image} alt={leftPosts[2].data.title} />
+  </span>
+</div>
+
+{leftPosts[2].data.music?.embed && (
+  <div id="audio03" class="audio-component instance-3">
+    <div class="frame">
+      <iframe src={leftPosts[2].data.music.embed}></iframe>
+    </div>
+  </div>
+)}
+
+<p id="text35" class="text-component instance-35 style-6">
+  <span class="p">
+    <em>
+      {leftPosts[2].data.genres.map((genre) => (
+        <>
+          {genre}<br />
+        </>
+      ))}
+    </em>
+  </span>
+</p>
+
+<p id="text36" class="text-component instance-36 style-9">
+  {categoryLabels[leftPosts[2].data.category]}
+</p>
+
+<ul id="links04" class="links-component instance-4">
+  <li class="n01">
+    <a href={`/editorial/${leftPosts[2].id}`}>Read ⟶</a>
+  </li>
+</ul>
+
+{leftPosts[2].data.topLabel && (
+  <p id="text37" class="text-component instance-37 style-23">
+    {leftPosts[2].data.topLabel}
+  </p>
+)}
+
+
 								</div>
 								<div>
-									<p id="text21" class="text-component instance-21 style-9">16 jun 2026</p>
-									<h1 id="text25" class="text-component instance-25 style-12">BAND RELEASE NEW ALBUM</h1>
-									<p id="text14" class="text-component instance-14 style-4">Let&#39;s review the album</p>
-									<div id="image02" class="image-component instance-2 style-1">
-										<span class="frame"><img src="assets/images/image02.jpg" alt="" /></span>
-									</div>
-									<div id="audio01" class="audio-component instance-1">
-										<div class="frame">
-											<iframe src="https://bandcamp.com/EmbeddedPlayer/transparent=true/track=2740131981/album=3325921223/size=small/bgcol=ffffff/linkcol=0687f5"></iframe>
-										</div>
-									</div>
-									<p id="text31" class="text-component instance-31 style-6"><span class="p"><em>SYNTHPOP<br />NEWWAVE<br />POSTPUNK</em></span></p>
-									<p id="text24" class="text-component instance-24 style-9">Opinion</p>
-									<ul id="links05" class="links-component instance-5">
-										<li class="n01">
-											<a href="https://undergroundjournal.crd.co/">Read ⟶</a>
-										</li>
-									</ul>
-									<p id="text46" class="text-component instance-46 style-23">ISSUE 017</p>
-									<p id="text05" class="text-component instance-5 style-9">21 jun 2026</p>
-									<h1 id="text29" class="text-component instance-29 style-12">Best songs this week</h1>
-									<p id="text30" class="text-component instance-30 style-4">Curated collection of best songs of the week</p>
-									<div id="image06" class="image-component instance-6 style-1">
-										<span class="frame"><img src="assets/images/image06.jpg" alt="" /></span>
-									</div>
-									<div id="audio06" class="audio-component instance-6">
-										<div class="frame">
-											<iframe src="https://bandcamp.com/EmbeddedPlayer/transparent=true/track=2740131981/album=3325921223/size=small/bgcol=ffffff/linkcol=0687f5"></iframe>
-										</div>
-									</div>
-									<p id="text27" class="text-component instance-27 style-6"><span class="p"><em>postpunk<br />newwave<br />darkwave</em></span></p>
-									<p id="text32" class="text-component instance-32 style-9">Weekly picks</p>
-									<ul id="links02" class="links-component instance-2">
-										<li class="n01">
-											<a href="/editorial">Read ⟶</a>
-										</li>
-									</ul>
-									<p id="text49" class="text-component instance-49 style-23">ENTRY 003</p>
-									<p id="text23" class="text-component instance-23 style-9">21 jun 2026</p>
-									<h1 id="text22" class="text-component instance-22 style-12">Best songs this week</h1>
-									<p id="text07" class="text-component instance-7 style-4"><span class="p">Curated collection of best songs of the week<br />Curated collection of best songs of the week</span></p>
-									<div id="image01" class="image-component instance-1 style-1">
-										<span class="frame"><img src="assets/images/image01.jpg" alt="" /></span>
-									</div>
-									<div id="audio07" class="audio-component instance-7">
-										<div class="frame">
-											<iframe src="https://bandcamp.com/EmbeddedPlayer/transparent=true/track=2740131981/album=3325921223/size=small/bgcol=ffffff/linkcol=0687f5"></iframe>
-										</div>
-									</div>
-									<p id="text09" class="text-component instance-9 style-6"><span class="p"><em>postpunk<br />newwave<br />darkwave</em></span></p>
-									<p id="text10" class="text-component instance-10 style-9">Weekly picks</p>
-									<ul id="links01" class="links-component instance-1">
-										<li class="n01">
-											<a href="/editorial">Read ⟶</a>
-										</li>
-									</ul>
-									<p id="text11" class="text-component instance-11 style-23">ENTRY 003</p>
+									<p id="text21" class="text-component instance-21 style-9">
+  {formatDate(rightPosts[0].data.date)}
+</p>
+
+<h1 id="text25" class="text-component instance-25 style-12">
+  {rightPosts[0].data.title}
+</h1>
+
+<p id="text14" class="text-component instance-14 style-4">
+  {rightPosts[0].data.description}
+</p>
+
+<div id="image02" class="image-component instance-2 style-1">
+  <span class="frame">
+    <img src={rightPosts[0].data.image} alt={rightPosts[0].data.title} />
+  </span>
+</div>
+
+{rightPosts[0].data.music?.embed && (
+  <div id="audio01" class="audio-component instance-1">
+    <div class="frame">
+      <iframe src={rightPosts[0].data.music.embed}></iframe>
+    </div>
+  </div>
+)}
+
+<p id="text31" class="text-component instance-31 style-6">
+  <span class="p">
+    <em>
+      {rightPosts[0].data.genres.map((genre) => (
+        <>
+          {genre}<br />
+        </>
+      ))}
+    </em>
+  </span>
+</p>
+
+<p id="text24" class="text-component instance-24 style-9">
+  {categoryLabels[rightPosts[0].data.category]}
+</p>
+
+<ul id="links05" class="links-component instance-5">
+  <li class="n01">
+    <a href={`/editorial/${rightPosts[0].id}`}>Read ⟶</a>
+  </li>
+</ul>
+
+{rightPosts[0].data.topLabel && (
+  <p id="text46" class="text-component instance-46 style-23">
+    {rightPosts[0].data.topLabel}
+  </p>
+)}
+									<p id="text05" class="text-component instance-5 style-9">
+  {formatDate(rightPosts[1].data.date)}
+</p>
+
+<h1 id="text29" class="text-component instance-29 style-12">
+  {rightPosts[1].data.title}
+</h1>
+
+<p id="text30" class="text-component instance-30 style-4">
+  {rightPosts[1].data.description}
+</p>
+
+<div id="image06" class="image-component instance-6 style-1">
+  <span class="frame">
+    <img src={rightPosts[1].data.image} alt={rightPosts[1].data.title} />
+  </span>
+</div>
+
+{rightPosts[1].data.music?.embed && (
+  <div id="audio06" class="audio-component instance-6">
+    <div class="frame">
+      <iframe src={rightPosts[1].data.music.embed}></iframe>
+    </div>
+  </div>
+)}
+
+<p id="text27" class="text-component instance-27 style-6">
+  <span class="p">
+    <em>
+      {rightPosts[1].data.genres.map((genre) => (
+        <>
+          {genre}<br />
+        </>
+      ))}
+    </em>
+  </span>
+</p>
+
+<p id="text32" class="text-component instance-32 style-9">
+  {categoryLabels[rightPosts[1].data.category]}
+</p>
+
+<ul id="links02" class="links-component instance-2">
+  <li class="n01">
+    <a href={`/editorial/${rightPosts[1].id}`}>Read ⟶</a>
+  </li>
+</ul>
+
+{rightPosts[1].data.topLabel && (
+  <p id="text49" class="text-component instance-49 style-23">
+    {rightPosts[1].data.topLabel}
+  </p>
+)}
+
+<p id="text23" class="text-component instance-23 style-9">
+  {formatDate(rightPosts[2].data.date)}
+</p>
+
+<h1 id="text22" class="text-component instance-22 style-12">
+  {rightPosts[2].data.title}
+</h1>
+
+<p id="text07" class="text-component instance-7 style-4">
+  {rightPosts[2].data.description}
+</p>
+
+<div id="image01" class="image-component instance-1 style-1">
+  <span class="frame">
+    <img src={rightPosts[2].data.image} alt={rightPosts[2].data.title} />
+  </span>
+</div>
+
+{rightPosts[2].data.music?.embed && (
+  <div id="audio07" class="audio-component instance-7">
+    <div class="frame">
+      <iframe src={rightPosts[2].data.music.embed}></iframe>
+    </div>
+  </div>
+)}
+
+<p id="text09" class="text-component instance-9 style-6">
+  <span class="p">
+    <em>
+      {rightPosts[2].data.genres.map((genre) => (
+        <>
+          {genre}<br />
+        </>
+      ))}
+    </em>
+  </span>
+</p>
+
+<p id="text10" class="text-component instance-10 style-9">
+  {categoryLabels[rightPosts[2].data.category]}
+</p>
+
+<ul id="links01" class="links-component instance-1">
+  <li class="n01">
+    <a href={`/editorial/${rightPosts[2].id}`}>Read ⟶</a>
+  </li>
+</ul>
+
+{rightPosts[2].data.topLabel && (
+  <p id="text11" class="text-component instance-11 style-23">
+    {rightPosts[2].data.topLabel}
+  </p>
+)}
+
+
 								</div>
 							</div>
 						</div>
@@ -289,6 +522,6 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 				</div>
 			</div>
 		</div>
-		
-
-</BaseLayout>
+		<script is:inline src="/assets/editorial/main.js"></script>
+	</body>
+</html>
