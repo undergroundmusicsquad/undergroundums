@@ -2552,3 +2552,21 @@ body.is-instant::after {
   line-height: 0.75 !important;
   font-weight: 700 !important;
 }
+.article-track-genres
+.article-track-genres li
+
+.ums-article-content {
+  margin-top: 1.25rem;
+  max-width: 100%;
+}
+
+.ums-article-content p {
+  font-family: 'Instrument Sans', sans-serif;
+  color: #505A73;
+  font-size: 1.25em;
+  line-height: 1.5;
+  font-weight: 400;
+  letter-spacing: 0;
+  margin: 0 0 1rem 0;
+  text-align: left;
+}

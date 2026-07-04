@@ -13,6 +13,29 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
+const siteGenres = [
+  'Progressive Rock',
+  'Surf Rock',
+  'Psychedelic Rock',
+  'Shoegaze',
+  'Postpunk',
+  'Synthpop',
+  'Darkwave',
+  'Dream Pop',
+  'Experimental',
+  'Noise',
+  'Garage Rock',
+  'Coldwave',
+];
+
+const categoryLabels = {
+  'track-of-the-day': 'Track of the Day',
+  'track-of-the-week': 'Track of the Week',
+  'track-of-the-month': 'Track of the Month',
+  interview: 'Interview',
+  review: 'Review',
+  'featured-album': 'Featured Album',
+};
 
 const formattedDate = post.data.date.toLocaleDateString('en-US', {
   day: '2-digit',
@@ -69,25 +92,21 @@ const hasHeroMusic =
             <div class="inner" data-onvisible-trigger="1">
 
               <div>
-                {post.data.genres.map((genre) => (
-                  <h1 class="text-component instance-94 style-26">{genre}</h1>
-                ))}
+                {siteGenres.map((genre) => (
+  <h1 class="text-component instance-94 style-26">{genre}</h1>
+))}
 
-                <div id="table01" class="table-component instance-1">
-                  <div class="inner">
-                    <table>
-                      <tbody>
-                        {['E','D','I','T','O','R','I','A','L'].map((letter) => (
-                          <tr><td>{letter}</td></tr>
-                        ))}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+                
               </div>
 
               <div>
-                <p id="text82" class="text-component instance-82 style-23">ENTRY 003</p>
+{post.data.topLabel && (
+  <p id="text11" class="text-component instance-11 style-23">
+    {post.data.topLabel}
+  </p>
+)}
+
+
                 <p id="text01" class="text-component instance-1 style-9">{formattedDate}</p>
 
                 <h1 id="text39" class="text-component instance-39 style-25">
@@ -114,19 +133,69 @@ const hasHeroMusic =
                   </div>
                 )}
 
-                <p id="text33" class="text-component instance-33 style-9">
-                  {post.data.category}
+                                <p id="text33" class="text-component instance-33 style-9">
+                  {categoryLabels[post.data.category]}
                 </p>
 
-                <div class="ums-article-content text-component instance-44 style-4">
+                <div class="ums-article-content">
+                
+                <p class="text-component instance-34 style-6">
+  <span class="p">
+    <em>
+      {post.data.genres.map((genre) => (
+        <>
+          {genre}<br />
+        </>
+      ))}
+    </em>
+  </span>
+
+</p>
+
+
   <Content />
+
 </div>
 
-                <ul id="links06" class="links-component instance-6">
-                  <li class="n01">
-                    <a href="/editorial">Back to Editorial →</a>
-                  </li>
-                </ul>
+  {post.data.bottomLabel && (
+  <p class="text-component instance-82 style-23">
+    {post.data.bottomLabel}
+  </p>
+)}
+
+<ul id="links06" class="links-component instance-5">
+  <li class="n01">
+    <a href="/editorial">← Back to Editorial</a>
+  </li>
+</ul>
+
+<ul id="links06" class="links-component instance-5">
+  <li class="n01">
+    <a href="/editorial">← Home</a>
+  </li>
+</ul>
+
+<ul id="links12" class="links-component instance-1">
+  <li><a href="https://www.instagram.com/undergroundmusicsquad" target="_blank">Instagram</a></li>
+</ul>
+
+<ul id="links11" class="links-component instance-1">
+  <li><a href="https://open.spotify.com/user/0plns05vdbfkzf07f0i6rs4b0" target="_blank">Spotify</a></li>
+</ul>
+
+
+
+<ul id="links13" class="links-component instance-1">
+  <li><a href="https://www.youtube.com/@undergroundmusics" target="_blank">YouTube</a></li>
+</ul>
+
+<ul id="links14" class="links-component instance-1">
+  <li><a href="https://soundcloud.com/undergroundmusicsquad" target="_blank">SoundCloud</a></li>
+</ul>
+
+<ul id="links15" class="links-component instance-1">
+  <li><a href="https://sbmt.to/um-squad" target="_blank">Submit Music →</a></li>
+</ul>
               </div>
 
             </div>
