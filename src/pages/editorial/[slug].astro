@@ -1,0 +1,94 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('editorial');
+
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const formattedDate = post.data.date.toLocaleDateString('en-US', {
+  day: '2-digit',
+  month: 'short',
+  year: 'numeric',
+});
+
+const hasHeroMusic =
+  post.data.music?.platform === 'bandcamp' &&
+  post.data.music?.embed &&
+  post.data.music?.placement === 'hero';
+
+const hasBodyMusic =
+  post.data.music &&
+  post.data.music.placement === 'body';
+---
+
+<BaseLayout
+  title={`${post.data.title} | Underground Music Squad`}
+  description={post.data.description}
+  image={post.data.image}
+  css="/assets/article/main.css"
+  js="/assets/article/main.js"
+  noscript="/assets/article/noscript.css"
+>
+  <main class="ums-article">
+    <a class="ums-back-link" href="/editorial">← Editorial</a>
+
+    <section class="ums-article-hero">
+      {post.data.image && (
+        <img
+          class="ums-article-image"
+          src={post.data.image}
+          alt={post.data.title}
+        />
+      )}
+
+      {hasHeroMusic && (
+        <iframe
+          class="ums-music-embed ums-music-embed--hero"
+          src={post.data.music.embed}
+          seamless
+        ></iframe>
+      )}
+    </section>
+
+    <section class="ums-article-meta">
+      <p>{formattedDate}</p>
+      <p>{post.data.category}</p>
+      <p>{post.data.genres.join(' / ')}</p>
+    </section>
+
+    <h1 class="ums-article-title">{post.data.title}</h1>
+
+    <p class="ums-article-description">
+      {post.data.description}
+    </p>
+
+    <article class="ums-article-body">
+      <Content />
+    </article>
+
+    {hasBodyMusic && (
+      <section class="ums-music-body">
+        {post.data.music.embed ? (
+          <iframe
+            class="ums-music-embed"
+            src={post.data.music.embed}
+            seamless
+          ></iframe>
+        ) : (
+          <a href={post.data.music.url} target="_blank">
+            Listen on {post.data.music.platform} →
+          </a>
+        )}
+      </section>
+    )}
+  </main>
+</BaseLayout>
