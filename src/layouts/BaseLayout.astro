@@ -1,0 +1,49 @@
+---
+const {
+  title = 'Underground Music Squad',
+  description = 'Independent music curation and editorial journal.',
+  image = '/og-image.jpg',
+
+  css = '/assets/home/main.css',
+  js = '/assets/home/main.js',
+  noscript = '/assets/home/noscript.css'
+
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>{title}</title>
+
+  <meta name="description" content={description} />
+
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={image} />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" href="/favicon.ico" />
+
+  <link rel="stylesheet" href={css} />
+
+  <noscript>
+    <link rel="stylesheet" href={noscript} />
+  </noscript>
+
+</head>
+
+<body>
+
+  <slot />
+
+  <script is:inline src={js}></script>
+
+</body>
+
+</html>
