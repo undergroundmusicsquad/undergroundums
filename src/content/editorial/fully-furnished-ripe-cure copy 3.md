@@ -7,8 +7,6 @@ date: 2026-07-05
 category: track-of-the-day
 
 genres:
-  - Progressive Rock
-  - Surf Rock
   - Psychedelic Rock
 
 image: "https://f4.bcbits.com/img/a1347323349_10.jpg"
