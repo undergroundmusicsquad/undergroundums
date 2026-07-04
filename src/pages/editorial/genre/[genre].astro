@@ -1,6 +1,39 @@
 ---
-
 import { getCollection } from 'astro:content';
+
+function slugify(value) {
+  return value
+    .toLowerCase()
+    .trim()
+    .replace(/&/g, 'and')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+export async function getStaticPaths() {
+  const slugifyGenre = (value) =>
+    value
+      .toLowerCase()
+      .trim()
+      .replace(/&/g, 'and')
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '');
+
+  const posts = await getCollection('editorial', ({ data }) => !data.draft);
+
+  const genres = [
+    ...new Set(
+      posts.flatMap((post) => post.data.genres ?? [])
+    ),
+  ];
+
+  return genres.map((genre) => ({
+    params: { genre: slugifyGenre(genre) },
+    props: { selectedGenre: genre },
+  }));
+}
+
+const { selectedGenre } = Astro.props;
 
 const posts = await getCollection('editorial', ({ data }) => !data.draft);
 
@@ -8,11 +41,21 @@ const sortedPosts = posts.sort(
   (a, b) => b.data.date.getTime() - a.data.date.getTime()
 );
 
-const PAGE_SIZE = 7;
-const pagePosts = sortedPosts.slice(0, PAGE_SIZE);
+const genres = [
+  ...new Set(
+    sortedPosts.flatMap((post) => post.data.genres ?? [])
+  ),
+].sort((a, b) => a.localeCompare(b));
 
+const filteredPosts = sortedPosts.filter((post) =>
+  (post.data.genres ?? []).some((genre) => slugify(genre) === slugify(selectedGenre))
+);
+
+const PAGE_SIZE = 7;
 const currentPage = 1;
-const totalPages = Math.ceil(sortedPosts.length / PAGE_SIZE);
+const totalPages = Math.ceil(filteredPosts.length / PAGE_SIZE);
+const pagePosts = filteredPosts.slice(0, PAGE_SIZE);
+const genreBasePath = `/editorial/genre/${slugify(selectedGenre)}`;
 
 const [post, ...otherPosts] = pagePosts;
 
@@ -28,21 +71,6 @@ const categoryLabels = {
   'featured-album': 'Featured Album',
 };
 
-
-const genres = [
-  ...new Set(
-    sortedPosts.flatMap((post) => post.data.genres ?? [])
-  ),
-].sort((a, b) => a.localeCompare(b));
-
-const slugify = (value) =>
-  value
-    .toLowerCase()
-    .trim()
-    .replace(/&/g, 'and')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-
 const formatDate = (date) =>
   date.toLocaleDateString('en-US', {
     day: '2-digit',
@@ -55,7 +83,7 @@ const formatDate = (date) =>
 <!DOCTYPE HTML>
 <html lang="en">
 	<head>
-		<title>Underground Music Squad - Editorial</title>
+		<title>{selectedGenre} - Underground Music Squad Editorial</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1" />
 		<meta name="color-scheme" content="light only" />
@@ -555,14 +583,14 @@ const formatDate = (date) =>
 													<tr>
 														<td>
 															{currentPage > 1 ? (
-																<a href={currentPage === 2 ? '/editorial' : `/editorial/page/${currentPage - 1}`}>←</a>
+																<a href={currentPage === 2 ? genreBasePath : `${genreBasePath}/${currentPage - 1}`}>←</a>
 															) : (
 																<span>←</span>
 															)}
 														</td>
 														{Array.from({ length: totalPages }, (_, i) => {
 															const pageNumber = i + 1;
-															const href = pageNumber === 1 ? '/editorial' : `/editorial/page/${pageNumber}`;
+															const href = pageNumber === 1 ? genreBasePath : `${genreBasePath}/${pageNumber}`;
 
 															return (
 																<td>
@@ -576,7 +604,7 @@ const formatDate = (date) =>
 														})}
 														<td>
 															{currentPage < totalPages ? (
-																<a href={`/editorial/page/${currentPage + 1}`}>→</a>
+																<a href={`${genreBasePath}/${currentPage + 1}`}>→</a>
 															) : (
 																<span>→</span>
 															)}

@@ -3076,3 +3076,24 @@ body.is-instant::after {
 		font-size: 0.5em;
 	}
 }
+
+.genre-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.genre-link:hover {
+  color: inherit;
+  text-decoration: none;
+  opacity: .7;
+}
+
+#container02 .genre-link,
+#container02 .genre-link:visited,
+#container02 .genre-link:hover,
+#container02 .genre-link:active {
+  color: inherit !important;
+  text-decoration: none !important;
+  border-bottom: 0 !important;
+  box-shadow: none !important;
+}

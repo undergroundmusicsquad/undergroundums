@@ -2,17 +2,31 @@
 
 import { getCollection } from 'astro:content';
 
-const posts = await getCollection('editorial', ({ data }) => !data.draft);
+export async function getStaticPaths() {
+  const posts = await getCollection('editorial', ({ data }) => !data.draft);
 
-const sortedPosts = posts.sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime()
-);
+  const sortedPosts = posts.sort(
+    (a, b) => b.data.date.getTime() - a.data.date.getTime()
+  );
 
-const PAGE_SIZE = 7;
-const pagePosts = sortedPosts.slice(0, PAGE_SIZE);
+  const PAGE_SIZE = 7;
+  const pages = Math.ceil(sortedPosts.length / PAGE_SIZE);
 
-const currentPage = 1;
-const totalPages = Math.ceil(sortedPosts.length / PAGE_SIZE);
+  return Array.from({ length: pages - 1 }, (_, i) => {
+    const page = i + 2;
+
+    return {
+      params: { page: String(page) },
+      props: {
+        pagePosts: sortedPosts.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE),
+        currentPage: page,
+        totalPages: pages,
+      },
+    };
+  });
+}
+
+const { pagePosts, currentPage, totalPages } = Astro.props;
 
 const [post, ...otherPosts] = pagePosts;
 
@@ -27,21 +41,6 @@ const categoryLabels = {
   review: 'Review',
   'featured-album': 'Featured Album',
 };
-
-
-const genres = [
-  ...new Set(
-    sortedPosts.flatMap((post) => post.data.genres ?? [])
-  ),
-].sort((a, b) => a.localeCompare(b));
-
-const slugify = (value) =>
-  value
-    .toLowerCase()
-    .trim()
-    .replace(/&/g, 'and')
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
 
 const formatDate = (date) =>
   date.toLocaleDateString('en-US', {
@@ -95,16 +94,14 @@ const formatDate = (date) =>
 						<div class="wrapper">
 							<div class="inner" data-onvisible-trigger="1">
 								<div>
-									{genres.map((genre) => (
-										<h1 class="text-component style-26">
-											<a
-												href={`/editorial/genre/${slugify(genre)}`}
-												class="genre-link"
-											>
-												{genre}
-											</a>
-										</h1>
-									))}
+									<h1 id="text94" class="text-component instance-94 style-26">psychedelic rock</h1>
+									<h1 id="text83" class="text-component instance-83 style-26">synthwave</h1>
+									<h1 id="text89" class="text-component instance-89 style-26">Experimental</h1>
+									<h1 id="text93" class="text-component instance-93 style-26">postpunk</h1>
+									<h1 id="text92" class="text-component instance-92 style-26">shoegaze</h1>
+									<h1 id="text90" class="text-component instance-90 style-26">psychedelic</h1>
+									<h1 id="text87" class="text-component instance-87 style-26">SYNTHPOP</h1>
+									<h1 id="text85" class="text-component instance-85 style-26">Darkwave</h1>
 								</div>
 								<div>
 									

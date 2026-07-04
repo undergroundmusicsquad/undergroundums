@@ -1,9 +1,8 @@
 ---
 import { getCollection, render } from 'astro:content';
-import BaseLayout from '../../layouts/BaseLayout.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('editorial');
+  const posts = await getCollection('editorial', ({ data }) => !data.draft);
 
   return posts.map((post) => ({
     params: { slug: post.id },
@@ -13,20 +12,26 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
-const siteGenres = [
-  'Progressive Rock',
-  'Surf Rock',
-  'Psychedelic Rock',
-  'Shoegaze',
-  'Postpunk',
-  'Synthpop',
-  'Darkwave',
-  'Dream Pop',
-  'Experimental',
-  'Noise',
-  'Garage Rock',
-  'Coldwave',
-];
+
+const allPosts = await getCollection('editorial', ({ data }) => !data.draft);
+
+const sortedPosts = allPosts.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+const genres = [
+  ...new Set(
+    sortedPosts.flatMap((post) => post.data.genres ?? [])
+  ),
+].sort((a, b) => a.localeCompare(b));
+
+const slugify = (value) =>
+  value
+    .toLowerCase()
+    .trim()
+    .replace(/&/g, 'and')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
 
 const categoryLabels = {
   'track-of-the-day': 'Track of the Day',
@@ -37,172 +42,199 @@ const categoryLabels = {
   'featured-album': 'Featured Album',
 };
 
-const formattedDate = post.data.date.toLocaleDateString('en-US', {
-  day: '2-digit',
-  month: 'short',
-  year: 'numeric',
-});
-
-const hasHeroMusic =
-  post.data.music?.platform === 'bandcamp' &&
-  post.data.music?.embed &&
-  post.data.music?.placement === 'hero';
+const formatDate = (date) =>
+  date.toLocaleDateString('en-US', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  });
 ---
 
-<BaseLayout
-  title={`${post.data.title} | Underground Music Squad`}
-  description={post.data.description}
-  image={post.data.image}
-  css="/assets/article/main.css"
-  js="/assets/article/main.js"
-  noscript="/assets/article/noscript.css"
->
-  <div class="site-wrapper">
-    <div class="site-main" role="main">
-      <div class="inner">
+<!DOCTYPE HTML>
+<html lang="en">
+	<head>
+		<title>{post.data.title} - Underground Music Squad</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<meta name="color-scheme" content="light only" />
+		<meta name="description" content={post.data.description} />
+		<meta property="og:title" content={`${post.data.title} - Underground Music Squad`} />
+		<meta property="og:description" content={post.data.description} />
+		<meta property="og:image" content={post.data.image} />
+		<link href="https://fonts.googleapis.com/css2?display=swap&family=Instrument+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Inter:ital,wght@0,400;1,400" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="/assets/editorial/main.css" />
+		<noscript><link rel="stylesheet" href="/assets/editorial/noscript.css" /></noscript>
+	</head>
+	<body>
+		<div class="site-wrapper">
+			<div class="site-main" role="main">
+				<div class="inner">
+					<hr id="divider07" class="divider-component instance-7 style-7">
+					<div id="container01" class="container-component instance-1 style-1 columns">
+						<div class="wrapper">
+							<div class="inner" data-onvisible-trigger="1">
+								<div>
+									<h1 id="text40" class="text-component instance-40 style-14">UNDERGROUND</h1>
+									<h2 id="text02" class="text-component instance-2 style-18">MUSIC</h2>
+									<h1 id="text03" class="text-component instance-3 style-16">SQUAD</h1>
+								</div>
+								<div>
+									<h1 id="text41" class="text-component instance-41 style-19">SINCE 2020</h1>
+									<h1 id="text42" class="text-component instance-42 style-20">SINCE 2020</h1>
+									<h1 id="text43" class="text-component instance-43 style-21">SINCE 2020</h1>
+									<h1 id="text08" class="text-component instance-8 style-22">SINCE 2020</h1>
+								</div>
+							</div>
+						</div>
+					</div>
 
-        <hr id="divider07" class="divider-component instance-7 style-7">
+					<ul id="buttons02" class="buttons-component instance-2 style-3">
+						<li>
+							<a href="/editorial" class="n01" role="button">EDITORIAL</a>
+						</li>
+					</ul>
 
-        <div id="container01" class="container-component instance-1 style-1 columns">
-          <div class="wrapper">
-            <div class="inner" data-onvisible-trigger="1">
-              <div>
-                <h1 id="text40" class="text-component instance-40 style-14">UNDERGROUND</h1>
-                <h2 id="text02" class="text-component instance-2 style-18">MUSIC</h2>
-                <h1 id="text03" class="text-component instance-3 style-16">SQUAD</h1>
-              </div>
-              <div>
-                <h1 id="text41" class="text-component instance-41 style-19">SINCE 2020</h1>
-                <h1 id="text42" class="text-component instance-42 style-20">SINCE 2020</h1>
-                <h1 id="text43" class="text-component instance-43 style-21">SINCE 2020</h1>
-                <h1 id="text08" class="text-component instance-8 style-22">SINCE 2020</h1>
-              </div>
-            </div>
-          </div>
-        </div>
+					<div id="container02" class="container-component instance-2 style-3 columns">
+						<div class="wrapper">
+							<div class="inner" data-onvisible-trigger="1">
+								<div>
+									{genres.map((genre) => (
+										<h1 class="text-component style-26">
+											<a
+												href={`/editorial/genre/${slugify(genre)}`}
+												class="genre-link"
+											>
+												{genre}
+											</a>
+										</h1>
+									))}
+								</div>
 
-        <ul id="buttons02" class="buttons-component instance-2 style-3">
-          <li>
-            <a href="/editorial" class="n01" role="button">EDITORIAL</a>
-          </li>
-        </ul>
+								<div>
+									{post.data.topLabel && (
+										<p id="text82" class="text-component instance-82 style-23">
+											{post.data.topLabel}
+										</p>
+									)}
 
-        <div id="container02" class="container-component instance-2 style-3 columns">
-          <div class="wrapper">
-            <div class="inner" data-onvisible-trigger="1">
+									<p id="text38" class="text-component instance-38 style-9">
+										{formatDate(post.data.date)}
+									</p>
 
-              <div>
-                {siteGenres.map((genre) => (
-  <h1 class="text-component instance-94 style-26">{genre}</h1>
-))}
+									<h1 id="text39" class="text-component instance-39 style-25">
+										{post.data.title}
+									</h1>
 
-                
-              </div>
+									<p id="text44" class="text-component instance-44 style-4">
+										{post.data.description}
+									</p>
 
-              <div>
-{post.data.topLabel && (
-  <p id="text11" class="text-component instance-11 style-23">
-    {post.data.topLabel}
-  </p>
-)}
+									{post.data.image && (
+										<div id="image07" class="image-component instance-7 style-1">
+											<span class="frame">
+												<img src={post.data.image} alt={post.data.title} />
+											</span>
+										</div>
+									)}
 
+									{post.data.music?.embed && (
+										<div id="audio02" class="audio-component instance-2">
+											<div class="frame">
+												<iframe src={post.data.music.embed}></iframe>
+											</div>
+										</div>
+									)}
 
-                <p id="text01" class="text-component instance-1 style-9">{formattedDate}</p>
+									<p id="text47" class="text-component instance-47 style-9">
+										{categoryLabels[post.data.category]}
+									</p>
 
-                <h1 id="text39" class="text-component instance-39 style-25">
-                  {post.data.title}
-                </h1>
+									<p id="text45" class="text-component instance-45 style-6">
+										<span class="p">
+											<em>
+												{post.data.genres.map((genre) => (
+													<>
+														{genre}<br />
+													</>
+												))}
+											</em>
+										</span>
+									</p>
 
-                <p id="text44" class="text-component instance-44 style-4">
-                  {post.data.description}
-                </p>
-
-                {post.data.image && (
-                  <div id="image07" class="image-component instance-7 style-1">
-                    <span class="frame">
-                      <img src={post.data.image} alt={post.data.title} />
-                    </span>
-                  </div>
-                )}
-
-                {hasHeroMusic && (
-                  <div id="audio02" class="audio-component instance-2">
-                    <div class="frame">
-                      <iframe src={post.data.music.embed}></iframe>
-                    </div>
-                  </div>
-                )}
-
-                                <p id="text33" class="text-component instance-33 style-9">
-                  {categoryLabels[post.data.category]}
-                </p>
-
-                <div class="ums-article-content">
-                
-                <p class="text-component instance-34 style-6">
-  <span class="p">
-    <em>
-      {post.data.genres.map((genre) => (
-        <>
-          {genre}<br />
-        </>
-      ))}
-    </em>
-  </span>
-
-</p>
-
-
+									<div class="ums-article-content text-component instance-44 style-4">
   <Content />
-
 </div>
 
-  {post.data.bottomLabel && (
-  <p class="text-component instance-82 style-23">
-    {post.data.bottomLabel}
-  </p>
-)}
+									{post.data.bottomLabel && (
+										<p id="text75" class="text-component instance-75 style-23">
+											{post.data.bottomLabel}
+										</p>
+									)}
 
-<ul id="links06" class="links-component instance-5">
-  <li class="n01">
-    <a href="/editorial">← Back to Editorial</a>
-  </li>
-</ul>
+									<ul id="links08" class="links-component instance-8">
+										<li class="n01">
+											<a href="/editorial">← Back to Editorial</a>
+										</li>
+									</ul>
+                  <ul id="links08" class="links-component instance-8">
+										<li class="n01">
+											<a href="/">← Home</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
 
-<ul id="links06" class="links-component instance-5">
-  <li class="n01">
-    <a href="/editorial">← Home</a>
-  </li>
-</ul>
+					<div id="container03" class="container-component instance-3 style-1 columns">
+						<div class="wrapper">
+							<div class="inner" data-onvisible-trigger="1">
+								<div>
+									<hr id="divider04" class="divider-component instance-4 style-13">
+									<ul id="links09" class="links-component instance-9">
+										<li class="n01">
+											<a href="https://www.instagram.com/undergroundmusicsquad" target="_blank">Instagram →</a>
+										</li>
+									</ul>
+									<ul id="links10" class="links-component instance-10">
+										<li class="n01">
+											<a href="https://open.spotify.com/user/0plns05vdbfkzf07f0i6rs4b0" target="_blank">Spotify →</a>
+										</li>
+									</ul>
+									<ul id="links11" class="links-component instance-11">
+										<li class="n01">
+											<a href="https://www.youtube.com/@undergroundmusics" target="_blank">youtube →</a>
+										</li>
+									</ul>
+									<ul id="links12" class="links-component instance-12">
+										<li class="n01">
+											<a href="https://soundcloud.com/undergroundmusicsquad" target="_blank">soundcloud →</a>
+										</li>
+									</ul>
+									<ul id="links07" class="links-component instance-7">
+										<li class="n01">
+											<a href="https://sbmt.to/um-squad" target="_blank">SUBMIT MUSIC →</a>
+										</li>
+									</ul>
+								</div>
+								<div>
+									<div id="table02" class="table-component instance-2 style-1">
+										<div class="inner">
+											<table>
+												<tbody>
+													
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 
-<ul id="links12" class="links-component instance-1">
-  <li><a href="https://www.instagram.com/undergroundmusicsquad" target="_blank">Instagram</a></li>
-</ul>
-
-<ul id="links11" class="links-component instance-1">
-  <li><a href="https://open.spotify.com/user/0plns05vdbfkzf07f0i6rs4b0" target="_blank">Spotify</a></li>
-</ul>
-
-
-
-<ul id="links13" class="links-component instance-1">
-  <li><a href="https://www.youtube.com/@undergroundmusics" target="_blank">YouTube</a></li>
-</ul>
-
-<ul id="links14" class="links-component instance-1">
-  <li><a href="https://soundcloud.com/undergroundmusicsquad" target="_blank">SoundCloud</a></li>
-</ul>
-
-<ul id="links15" class="links-component instance-1">
-  <li><a href="https://sbmt.to/um-squad" target="_blank">Submit Music →</a></li>
-</ul>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </div>
-</BaseLayout>
+				</div>
+			</div>
+		</div>
+		<script is:inline src="/assets/editorial/main.js"></script>
+	</body>
+</html>
