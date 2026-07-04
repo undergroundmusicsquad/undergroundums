@@ -2535,15 +2535,7 @@ body.is-instant::after {
   margin-top: 48px;
 }
 
-@media (max-width: 640px) {
-  .ums-article {
-    padding: 64px 18px 96px;
-  }
 
-  .ums-article-meta {
-    display: block;
-  }
-}
 
 .article-track-genres
 .article-track-genres li
