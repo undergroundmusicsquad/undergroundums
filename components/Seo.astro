@@ -1,0 +1,50 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  image?: string;
+  type?: string;
+  keywords?: string[];
+  publishedTime?: string | Date;
+  modifiedTime?: string | Date;
+  jsonLd?: Record<string, any> | Record<string, any>[];
+}
+
+const {
+  title,
+  description,
+  path = '/',
+  image = '/og-image.png',
+  type = 'website',
+  keywords = [],
+  publishedTime,
+  modifiedTime,
+  jsonLd,
+} = Astro.props;
+
+const site = Astro.site ?? new URL('https://undergroundmusicsquad.com');
+const canonicalUrl = new URL(path, site).toString();
+const imageUrl = image?.startsWith('http') ? image : new URL(image || '/og-image.png', site).toString();
+const keywordContent = keywords.filter(Boolean).join(', ');
+const jsonLdContent = jsonLd ? JSON.stringify(jsonLd).replace(/</g, '\\u003c') : '';
+const published = publishedTime ? new Date(publishedTime).toISOString() : undefined;
+const modified = modifiedTime ? new Date(modifiedTime).toISOString() : published;
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+{keywordContent && <meta name="keywords" content={keywordContent} />}
+<link rel="canonical" href={canonicalUrl} />
+<meta property="og:site_name" content="Underground Music Squad" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={imageUrl} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+{type === 'article' && published && <meta property="article:published_time" content={published} />}
+{type === 'article' && modified && <meta property="article:modified_time" content={modified} />}
+{jsonLdContent && <script type="application/ld+json" set:html={jsonLdContent} />}

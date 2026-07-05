@@ -1,0 +1,107 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  path?: string;
+  image?: string;
+  type?: string;
+  keywords?: string[];
+  publishedTime?: string | Date;
+  modifiedTime?: string | Date;
+  jsonLd?: Record<string, any> | Record<string, any>[];
+}
+
+const {
+  title,
+  description,
+  path = '/',
+  image = '/og-image.png',
+  type = 'website',
+  keywords = [],
+  publishedTime,
+  modifiedTime,
+  jsonLd,
+} = Astro.props;
+
+const site = Astro.site ?? new URL('https://undergroundmusic.party');
+const canonicalUrl = new URL(path, site).toString();
+const imageUrl = image?.startsWith('http') ? image : new URL(image || '/og-image.png', site).toString();
+const keywordContent = keywords.filter(Boolean).join(', ');
+const organizationJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Underground Music Squad',
+  alternateName: 'UM Squad',
+  url: site.toString(),
+  foundingDate: '2020',
+  areaServed: 'Worldwide',
+  inLanguage: 'en',
+  description:
+    'Underground Music Squad is an independent music curation and editorial project founded in 2020. The project discovers emerging and overlooked artists, curates genre-focused playlists, publishes reviews, interviews and editorial features, and supports independent musicians through trusted music discovery platforms.',
+  sameAs: [
+    'https://www.submithub.com/playlister/um-squad',
+    'https://groover.co/en/influencer/profile/0.um-squad/',
+    'https://www.instagram.com/undergroundmusicsquad',
+    'https://open.spotify.com/user/0plns05vdbfkzf07f0i6rs4b0',
+    'https://www.youtube.com/@undergroundmusics',
+    'https://soundcloud.com/undergroundmusicsquad',
+  ],
+  knowsAbout: [
+    'Post-Punk',
+    'Coldwave',
+    'Darkwave',
+    'Dream Pop',
+    'Dreampop',
+    'New Wave',
+    'Surf Rock',
+    'Psychedelic Rock',
+    'Shoegaze',
+    'Synthpop',
+    'Synthwave',
+    'Alternative Rock',
+    'Witch House',
+    'Gothic',
+    'Doomer',
+    'Darksynth',
+    'Electro',
+    'Electronic Music',
+    'Altpop',
+    'Darkpop',
+    'Independent Music',
+    'Music Curation',
+    'Music Reviews',
+    'Music Discovery',
+    'Emerging Artists',
+    'Underground Artists',
+    'Underground Music',
+  ],
+};
+const jsonLdItems = [
+  organizationJsonLd,
+  ...(Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : []),
+];
+const jsonLdContent = JSON.stringify(jsonLdItems).replace(/</g, '\\u003c');
+const published = publishedTime ? new Date(publishedTime).toISOString() : undefined;
+const modified = modifiedTime ? new Date(modifiedTime).toISOString() : published;
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#ffffff" />
+{keywordContent && <meta name="keywords" content={keywordContent} />}
+<link rel="canonical" href={canonicalUrl} />
+<meta property="og:site_name" content="Underground Music Squad" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={imageUrl} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content="@undergroundmusicsquad" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={imageUrl} />
+{type === 'article' && published && <meta property="article:published_time" content={published} />}
+{type === 'article' && modified && <meta property="article:modified_time" content={modified} />}
+<script type="application/ld+json" set:html={jsonLdContent} />
