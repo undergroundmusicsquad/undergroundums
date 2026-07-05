@@ -2714,3 +2714,7 @@ body.is-instant::after {
 		font-size: 0.5em;
 	}
 }
+
+.home-genres {
+  margin-top: 3rem;
+}
