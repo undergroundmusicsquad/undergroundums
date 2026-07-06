@@ -2,7 +2,7 @@
 topLabel: "archive 1"
 title: "EM_LEN - Dead In Their Eyes"
 description: "A song for those who appreciate dark electronica, atmospheric synthpop, and music that captivates through mood rather than volume."
-date: 2026-07-04
+date: 2026-07-05
 
 category: track-of-the-day
 
