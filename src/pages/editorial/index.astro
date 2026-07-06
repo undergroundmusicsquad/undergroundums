@@ -1,6 +1,5 @@
 ---
-
-import Seo from '../../components/Seo.astro';
+import Seo from "../../components/Seo.astro";
 import { getCollection } from 'astro:content';
 
 const posts = await getCollection('editorial', ({ data }) => !data.draft);
@@ -46,14 +45,15 @@ const slugify = (value) =>
 
 
 const seoTitle = 'Editorial | Underground Music Squad';
-const seoDescription = 'Independent underground music editorial: reviews, interviews, weekly tracks and genre-focused discoveries from Underground Music Squad.';
-const seoKeywords = ['underground music editorial', 'music reviews', 'music interviews', ...genres];
+const seoDescription = 'Underground Music Squad editorial archive: independent music reviews, interviews, weekly tracks and underground discoveries.';
+const seoPath = '/editorial';
+const seoKeywords = ['underground music editorial', 'music reviews', 'music interviews', 'new music', 'post-punk', 'shoegaze', 'darkwave'];
 const editorialJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
-  name: 'Underground Music Squad Editorial',
+  name: seoTitle,
   description: seoDescription,
-  url: 'https://undergroundmusic.party/editorial',
+  url: `https://undergroundmusic.party${seoPath}`,
 };
 
 const breadcrumbJsonLd = {
@@ -90,7 +90,7 @@ const formatDate = (date) =>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width,initial-scale=1" />
 		<meta name="color-scheme" content="light only" />
-		<Seo title={seoTitle} description={seoDescription} path="/editorial" keywords={seoKeywords} jsonLd={[editorialJsonLd, breadcrumbJsonLd]} />
+		<Seo title={seoTitle} description={seoDescription} path={seoPath} keywords={seoKeywords} jsonLd={[editorialJsonLd, breadcrumbJsonLd]} />
 		<link href="https://fonts.googleapis.com/css2?display=swap&family=Instrument+Sans:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Inter:ital,wght@0,400;1,400" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="/assets/editorial/main.css" />
 		<noscript><link rel="stylesheet" href="/assets/editorial/noscript.css" /></noscript>
@@ -552,14 +552,6 @@ const formatDate = (date) =>
 							<div class="inner" data-onvisible-trigger="1">
 								<div>
 									<hr id="divider04" class="divider-component instance-4 style-13">
-
-                   
-                  <ul id="links09" class="links-component instance-9">
-										<li class="n01">
-											<a href="/">Home</a>
-										</li>
-									</ul>
-
 									<ul id="links09" class="links-component instance-9">
 										<li class="n01">
 											<a href="https://www.instagram.com/undergroundmusicsquad" target="_blank">Instagram →</a>
@@ -620,16 +612,10 @@ const formatDate = (date) =>
 																<span>→</span>
 															)}
 														</td>
-                          
 													</tr>
 												</tbody>
 											</table>
-
-
-
 										</div>
-
-                    
 									</div>
 								</div>
 							</div>

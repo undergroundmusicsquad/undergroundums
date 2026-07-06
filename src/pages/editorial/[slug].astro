@@ -47,6 +47,8 @@ const categoryLabels = {
 const seoTitle = `${post.data.title} | Underground Music Squad`;
 const seoDescription = post.data.description;
 const seoPath = `/editorial/${post.id}`;
+const primaryGenre = post.data.genres?.[0];
+const primaryGenrePath = primaryGenre ? `/editorial/genre/${slugify(primaryGenre)}` : undefined;
 const seoKeywords = [...(post.data.genres ?? []), categoryLabels[post.data.category], 'underground music', 'music editorial'];
 const articleJsonLd = {
   '@context': 'https://schema.org',
@@ -70,29 +72,41 @@ const articleJsonLd = {
   keywords: post.data.genres ?? [],
 };
 
+const breadcrumbItems = [
+  {
+    '@type': 'ListItem',
+    position: 1,
+    name: 'Home',
+    item: 'https://undergroundmusic.party/',
+  },
+  {
+    '@type': 'ListItem',
+    position: 2,
+    name: 'Editorial',
+    item: 'https://undergroundmusic.party/editorial',
+  },
+];
+
+if (primaryGenre && primaryGenrePath) {
+  breadcrumbItems.push({
+    '@type': 'ListItem',
+    position: 3,
+    name: primaryGenre,
+    item: `https://undergroundmusic.party${primaryGenrePath}`,
+  });
+}
+
+breadcrumbItems.push({
+  '@type': 'ListItem',
+  position: primaryGenre ? 4 : 3,
+  name: post.data.title,
+  item: `https://undergroundmusic.party${seoPath}`,
+});
+
 const breadcrumbJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
-  itemListElement: [
-    {
-      '@type': 'ListItem',
-      position: 1,
-      name: 'Home',
-      item: 'https://undergroundmusic.party/',
-    },
-    {
-      '@type': 'ListItem',
-      position: 2,
-      name: 'Editorial',
-      item: 'https://undergroundmusic.party/editorial',
-    },
-    {
-      '@type': 'ListItem',
-      position: 3,
-      name: post.data.title,
-      item: `https://undergroundmusic.party${seoPath}`,
-    },
-  ],
+  itemListElement: breadcrumbItems,
 };
 
 const formatDate = (date) =>

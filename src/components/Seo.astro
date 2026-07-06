@@ -15,7 +15,7 @@ const {
   title,
   description,
   path = '/',
-  image = '/og-image.png',
+  image,
   type = 'website',
   keywords = [],
   publishedTime,
@@ -24,9 +24,17 @@ const {
 } = Astro.props;
 
 const site = Astro.site ?? new URL('https://undergroundmusic.party');
+
 const canonicalUrl = new URL(path, site).toString();
-const imageUrl = image?.startsWith('http') ? image : new URL(image || '/og-image.png', site).toString();
+
+const imageUrl = image
+  ? image.startsWith('http')
+    ? image
+    : new URL(image, site).toString()
+  : null;
+
 const keywordContent = keywords.filter(Boolean).join(', ');
+
 const organizationJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -76,32 +84,53 @@ const organizationJsonLd = {
     'Underground Music',
   ],
 };
+
 const jsonLdItems = [
   organizationJsonLd,
   ...(Array.isArray(jsonLd) ? jsonLd : jsonLd ? [jsonLd] : []),
 ];
+
 const jsonLdContent = JSON.stringify(jsonLdItems).replace(/</g, '\\u003c');
-const published = publishedTime ? new Date(publishedTime).toISOString() : undefined;
-const modified = modifiedTime ? new Date(modifiedTime).toISOString() : published;
+
+const published = publishedTime
+  ? new Date(publishedTime).toISOString()
+  : undefined;
+
+const modified = modifiedTime
+  ? new Date(modifiedTime).toISOString()
+  : published;
 ---
+
 <title>{title}</title>
+
 <meta name="description" content={description} />
 <meta name="robots" content="index, follow" />
 <meta name="theme-color" content="#ffffff" />
+
 {keywordContent && <meta name="keywords" content={keywordContent} />}
+
 <link rel="canonical" href={canonicalUrl} />
+
 <meta property="og:site_name" content="Underground Music Squad" />
 <meta property="og:locale" content="en_US" />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:type" content={type} />
 <meta property="og:url" content={canonicalUrl} />
-<meta property="og:image" content={imageUrl} />
+{imageUrl && <meta property="og:image" content={imageUrl} />}
+
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:site" content="@undergroundmusicsquad" />
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
-<meta name="twitter:image" content={imageUrl} />
-{type === 'article' && published && <meta property="article:published_time" content={published} />}
-{type === 'article' && modified && <meta property="article:modified_time" content={modified} />}
+{imageUrl && <meta name="twitter:image" content={imageUrl} />}
+
+{type === 'article' && published && (
+  <meta property="article:published_time" content={published} />
+)}
+
+{type === 'article' && modified && (
+  <meta property="article:modified_time" content={modified} />
+)}
+
 <script type="application/ld+json" set:html={jsonLdContent} />
