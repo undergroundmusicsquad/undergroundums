@@ -16,10 +16,6 @@ image: "https://i.scdn.co/image/ab67616d0000b2731b61f334d0a9bfb5f369f58c"
 featured: true
 draft: false
 
-music:
-  platform: soundcloud
-  placement: body
-
 bottomLabel: "Archive 26"
 
 ---
