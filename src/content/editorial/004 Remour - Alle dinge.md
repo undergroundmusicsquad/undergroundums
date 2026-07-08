@@ -19,7 +19,6 @@ draft: false
 music:
   platform: soundcloud
   placement: body
-  url: "https://soundcloud.com/grauewolkenn/alle-dinge-new"
 
 bottomLabel: "Archive 26"
 
@@ -31,4 +30,4 @@ Urgent vocals cut through the dense atmosphere, making every emotion feel immedi
 
 It's a tense, energetic track that never loses its sense of momentum.
 
-
+https://soundcloud.com/grauewolkenn/alle-dinge-new
