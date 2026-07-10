@@ -20,6 +20,9 @@ bottomLabel: "Archive 26"
 
 "Hot Dog" is a very psychedelic track with a hypnotic, pulsing bass. It sounds like an old cassette playing on a broken tape machine. The vintage drum machine adds to that feeling. The whole thing stays positive and playful.
 
+Listen on youtube:
+https://www.youtube.com/watch?v=FiToL6BA27E
+
 Listen on spotify:
 https://open.spotify.com/track/6Z1aIe6uauIp9dhS8mj0X9
 
