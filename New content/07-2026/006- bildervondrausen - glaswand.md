@@ -34,4 +34,4 @@ https://open.spotify.com/artist/15LeNv7wDnxgZh1YeMRcap?si=
 https://bildervondrausen.bandcamp.com/track/glaswand
 
 bildervondrausen linktree:
-linktr.ee/bildervondrausen
+https://linktr.ee/bildervondrausen
