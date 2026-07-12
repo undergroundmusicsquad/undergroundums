@@ -30,8 +30,8 @@ bottomLabel: "Archive 26"
 Fast drum machine rhythms set the pace. Sustained chords and a soft, low vocal are covered in echo and reverb. The song has a melancholic mood and leaves a strong feeling of longing.
 
 Listen glaswand:
-https://open.spotify.com/artist/15LeNv7wDnxgZh1YeMRcap?si=
-https://bildervondrausen.bandcamp.com/track/glaswand
+spotify https://open.spotify.com/artist/15LeNv7wDnxgZh1YeMRcap?si=
+bandcamp https://bildervondrausen.bandcamp.com/track/glaswand
 
 bildervondrausen linktree:
 https://linktr.ee/bildervondrausen
