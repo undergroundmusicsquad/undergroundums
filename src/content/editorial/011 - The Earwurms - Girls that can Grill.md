@@ -27,7 +27,7 @@ music:
   embed: "https://bandcamp.com/EmbeddedPlayer/album=189399004/size=small/bgcol=ffffff/linkcol=0687f5/track=3267146893/transparent=true"
 
 links:
-  youtube: "https://www.youtube.com/watch?v=2_iUN45S-WI&list=RD2_iUN45S-WI"
+  youtube: "https://www.youtube.com/watch?v=2_iUN45S-WI"
   soundcloud: ""
   bandcamp: "https://geertruida.bandcamp.com/track/girls-that-can-grill"
   spotify: "https://open.spotify.com/track/4Tn1QgTv18OgmR4mucyTS4?si="

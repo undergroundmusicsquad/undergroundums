@@ -25,7 +25,7 @@ featured: true
 draft: false
 
 links:
-  youtube: "https://www.youtube.com/watch?v=f1NRcacmGfw&list=RDf1NRcacmGfw"
+  youtube: "https://www.youtube.com/watch?v=f1NRcacmGfw"
   soundcloud: "https://soundcloud.com/grauewolkenn/alle-dinge-new"
   bandcamp: ""
   spotify: ""
