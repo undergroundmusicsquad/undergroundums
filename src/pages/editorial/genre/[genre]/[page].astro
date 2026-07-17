@@ -200,7 +200,9 @@ const formatDate = (date) =>
 								<div>
 									
 
-                                    {post.data.topLabel && (
+                                    {post && (
+                                    <>
+{post.data.topLabel && (
                     <p id="text82" class="text-component instance-82 style-23">
     {post.data.topLabel}
   </p>
@@ -245,6 +247,8 @@ const formatDate = (date) =>
 											<a href={`/editorial/${post.id}`}>Read ⟶</a>
 										</li>
 									</ul>
+                                    </>
+                                    )}
 								</div>
 							</div>
 						</div>

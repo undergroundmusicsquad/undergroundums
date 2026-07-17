@@ -12,12 +12,6 @@ genres:
   - Newwave
   - Gothic
 
-hashtags: 
-  - Postpunk
-  - Darkwave
-  - Newwave
-  - Gothic 
-
 image: "https://f4.bcbits.com/img/a2517636017_10.jpg"
 
 featured: true
@@ -29,18 +23,15 @@ music:
   url: "https://bildervondrausen.bandcamp.com/track/glaswand"
   embed: "https://bandcamp.com/EmbeddedPlayer/track=95169749/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true"
 
-links:
-  youtube: "https://www.youtube.com/watch?v=SB-td4MmYCU"
-  soundcloud: ""
-  bandcamp: "https://bildervondrausen.bandcamp.com/track/glaswand"
-  spotify: "https://open.spotify.com/artist/15LeNv7wDnxgZh1YeMRcap?si="
-  instagram: ""
-  linktree: "https://linktr.ee/bildervondrausen"
-  website: ""
-
 bottomLabel: "Archive 26"
 
 ---
 
 Fast drum machine rhythms set the pace. Sustained chords and a soft, low vocal are covered in echo and reverb. The song has a melancholic mood and leaves a strong feeling of longing.
 
+Listen glaswand:
+spotify https://open.spotify.com/artist/15LeNv7wDnxgZh1YeMRcap?si=
+bandcamp https://bildervondrausen.bandcamp.com/track/glaswand
+
+bildervondrausen linktree:
+https://linktr.ee/bildervondrausen

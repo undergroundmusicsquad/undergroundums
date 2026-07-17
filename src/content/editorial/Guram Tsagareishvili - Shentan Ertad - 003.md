@@ -9,6 +9,10 @@ category: track-of-the-day
 genres:
   - Postpunk
 
+hashtags: 
+  - Postpunk
+
+
 image: "https://f4.bcbits.com/img/a1729895237_10.jpg"
 
 featured: true
@@ -19,6 +23,15 @@ music:
   placement: hero
   url: "https://guramtsagareishvili.bandcamp.com/track/shentan-ertad"
   embed: "https://bandcamp.com/EmbeddedPlayer/track=1744696907/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/"
+
+links:
+  youtube: "https://www.youtube.com/watch?v=K25cpvTBIWs"
+  soundcloud: ""
+  bandcamp: "https://guramtsagareishvili.bandcamp.com/track/shentan-ertad"
+  spotify: "https://open.spotify.com/track/20GJj8wvoXTtVaCVcuQdG1"
+  instagram: "https://www.instagram.com/guramts"
+  linktree: ""
+  website: ""
 
 bottomLabel: "Archive 26"
 

@@ -9,24 +9,10 @@ category: track-of-the-day
 genres:
   - Psychedelic rock
 
-hashtags: 
-  - Psychedelicrock
-  - Undergroundmusic
-
-
 image: "https://i.scdn.co/image/ab67616d0000b273954187ab958bc6c139ebbc0b"
 
 featured: true
 draft: false
-
-links:
-  youtube: "https://www.youtube.com/watch?v=FiToL6BA27E"
-  soundcloud: ""
-  bandcamp: ""
-  spotify: "https://open.spotify.com/track/6Z1aIe6uauIp9dhS8mj0X9"
-  instagram: ""
-  linktree: "https://linktr.ee/Jacquelinemusic"
-  website: ""
 
 bottomLabel: "Archive 26"
 
@@ -34,3 +20,11 @@ bottomLabel: "Archive 26"
 
 "Hot Dog" is a very psychedelic track with a hypnotic, pulsing bass. It sounds like an old cassette playing on a broken tape machine. The rhythm has the same vintage feel. The whole thing stays positive and playful.
 
+Listen on youtube:
+https://www.youtube.com/watch?v=FiToL6BA27E
+
+Listen on spotify:
+https://open.spotify.com/track/6Z1aIe6uauIp9dhS8mj0X9
+
+JACQUELINE linktree:
+https://linktr.ee/Jacquelinemusic

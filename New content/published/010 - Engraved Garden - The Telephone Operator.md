@@ -30,5 +30,9 @@ The track draws on the sound of classic synthpop. Cold, pulsing synths bring to 
 
 
 listen on bandcamp: https://engravedgarden.bandcamp.com/track/the-telephone-operator
+
+
 listen on spotify: https://open.spotify.com/track/5cTC3xkbtZFy8e2STcgKfW?si=
+
+
 Engraved Garden instargam: https://www.instagram.com/engravedgarden/

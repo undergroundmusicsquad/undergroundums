@@ -9,12 +9,6 @@ category: track-of-the-day
 genres:
   - Postpunk
 
-hashtags: 
-  - Postpunk
-  - Darkwave
-  - Gothic
-
-
 image: "https://f4.bcbits.com/img/a0128653647_10.jpg"
 
 featured: true
@@ -26,17 +20,14 @@ music:
   url: "https://ic2music.bandcamp.com/track/dead-end"
   embed: "https://bandcamp.com/EmbeddedPlayer/album=3534768866/size=small/bgcol=ffffff/linkcol=0687f5/track=1915210091/transparent=true/"
 
-links:
-  youtube: "https://www.youtube.com/watch?v=vk0ZZfaXJ5s"
-  soundcloud: ""
-  bandcamp: "https://ic2music.bandcamp.com/track/dead-end"
-  spotify: "https://open.spotify.com/track/4z5tzRQ3QJlfsZjC8rDSrD"
-  instagram: "https://www.instagram.com/IC2music"
-  linktree: ""
-  website: ""
-
 bottomLabel: "Archive 26"
 
 ---
 
 Pulsing textures and mysterious pads define the sound. A driving bass and post-punk guitars keep it moving. The song has a strange sense of mystery and unease, like the soundtrack to a noir detective film.
+
+Bandcamp: https://ic2music.bandcamp.com/track/dead-end
+
+Spotify: https://open.spotify.com/track/4z5tzRQ3QJlfsZjC8rDSrD
+
+Instagram: https://www.instagram.com/IC2music

@@ -1,5 +1,5 @@
 ---
-topLabel: "ENTRY 001"
+topLabel: "archive 1"
 title: "EM_LEN - Dead In Their Eyes"
 description: "A song for those who appreciate dark electronica, atmospheric synthpop, and music that captivates through mood rather than volume."
 date: 2026-07-05
@@ -8,10 +8,6 @@ category: track-of-the-day
 
 genres:
   - Darkwave
-
-hashtags: 
-  - Darkwave
-
 
 image: "https://f4.bcbits.com/img/a1882537300_10.jpg"
 
@@ -24,16 +20,7 @@ music:
   url: "https://emlen.bandcamp.com/track/dead-in-their-eyes"
   embed: "https://bandcamp.com/EmbeddedPlayer/album=2075670169/size=small/bgcol=ffffff/linkcol=0687f5/track=4038230605/transparent=true/"
 
-links:
-  youtube: "https://www.youtube.com/watch?v=41zh1wveIjU"
-  soundcloud: ""
-  bandcamp: "https://emlen.bandcamp.com/track/dead-in-their-eyes"
-  spotify: ""
-  instagram: ""
-  linktree: ""
-  website: ""
-
-bottomLabel: "archive 26"
+bottomLabel: "ENTRY 001"
 
 ---
 

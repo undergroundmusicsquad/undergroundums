@@ -1,5 +1,5 @@
 ---
-topLabel: "ENTRY 002"
+topLabel: "archive 26"
 title: "Huarinami - Carried Away"
 description: "A tense and dynamic single from Huarinami, blending punk energy with psychedelic indie rock to transform the frustrations of city life into a gripping musical catharsis."
 date: 2026-07-07
@@ -9,11 +9,6 @@ category: track-of-the-day
 genres:
   - Punk
   - Psychedelic rock
-
-hashtags: 
-  - Punk
-  - Psychedelic rock
-
 
 image: "https://f4.bcbits.com/img/a1048821163_10.jpg"
 
@@ -26,16 +21,7 @@ music:
   url: "https://huarinami.bandcamp.com/track/carried-away"
   embed: "https://bandcamp.com/EmbeddedPlayer/track=3206396353/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true"
 
-links:
-  youtube: "https://www.youtube.com/watch?v=yoRAGLBbVEw"
-  soundcloud: ""
-  bandcamp: "https://huarinami.bandcamp.com/track/carried-away"
-  spotify: ""
-  instagram: ""
-  linktree: ""
-  website: ""
-
-bottomLabel: "archive 26"
+bottomLabel: "ENTRY 002"
 
 ---
 

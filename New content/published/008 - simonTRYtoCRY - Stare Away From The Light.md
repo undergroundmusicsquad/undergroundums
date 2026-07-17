@@ -10,11 +10,6 @@ genres:
   - Postpunk
   - Emo
 
-hashtags: 
-  - Postpunk
-  - Emo
-
-
 image: "https://f4.bcbits.com/img/a1996560258_10.jpg"
 
 featured: true
@@ -26,17 +21,15 @@ music:
   url: "https://simontrytocry.bandcamp.com/track/stare-away-from-the-light"
   embed: "https://bandcamp.com/EmbeddedPlayer/track=1471838485/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/"
 
-links:
-  youtube: "https://www.youtube.com/watch?v=c8YTgx5We4I"
-  soundcloud: ""
-  bandcamp: "https://simontrytocry.bandcamp.com/track/stare-away-from-the-light"
-  spotify: "https://open.spotify.com/track/3MFNRMncQWBNtdksvR5ogM?si="
-  instagram: ""
-  linktree: "https://linktr.ee/simontrytocry"
-  website: ""
-
 bottomLabel: "Archive 26"
 
 ---
 
 The track feels like a reinterpretation of mid-2000s emo. Emotional, slightly frantic vocals sit alongside raw guitars and otherwise clean production. The visual style, lyrics, and production all feel self-aware.
+
+
+Listen on bandcamp: https://simontrytocry.bandcamp.com/track/stare-away-from-the-light
+
+Listen on spotify: https://open.spotify.com/track/3MFNRMncQWBNtdksvR5ogM?si=
+
+simonTRYtoCRY linktree: https://linktr.ee/simontrytocry
