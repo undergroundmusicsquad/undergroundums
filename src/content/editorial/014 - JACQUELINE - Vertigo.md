@@ -1,7 +1,7 @@
 ---
 topLabel: "ENTRY 014"
 title: "JACQUELINE - Vertigo"
-description: "Vintage synths, echo-drenched vocals, and a psychedelic rush."
+description: "Echo-drenched vocals and a psychedelic rush."
 date: 2026-07-19
 
 category: track-of-the-day
@@ -34,3 +34,4 @@ bottomLabel: "Archive 26"
 ---
 
 The intro grabbed my attention with its cheery guitar rhythm and vintage, buzzy synths, it reminds me of early psychedelic rock. Vocals sound completely echo-drenched. My favorite part is the middle. Composition suddenly becomes tense, the guitar speeds up and makes everything feel almost epic. Then it drops back down: drums, lightly distorted guitar, more space, and from there it gradually starts picking up again.
+
