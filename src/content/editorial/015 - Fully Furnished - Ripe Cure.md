@@ -1,7 +1,7 @@
 ---
 topLabel: "ENTRY 015"
 title: "Fully Furnished - Ripe Cure"
-description: "Fast, unpredictable, and full of momentum"
+description: "Fast, unpredictable, and full of momentum."
 date: 2026-07-20
 
 category: track-of-the-day
