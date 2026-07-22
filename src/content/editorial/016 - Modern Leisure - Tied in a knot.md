@@ -31,5 +31,5 @@ links:
 bottomLabel: "Archive 26"
 ---
 Editor's Note
-
-> *'Tied in a Knot' caught my attention with its guitars, groove, hooks - always moving and don't sit still for too long. Lyrics are tense - the music, strangely, isn’t. By the end, the tension felt more like energy than weight, and that’s what made me play it again.*
+<br>
+*'Tied in a Knot' caught my attention with its guitars, groove, hooks - always moving and don't sit still for too long. Lyrics are tense - the music, strangely, isn’t. By the end, the tension felt more like energy than weight, and that’s what made me play it again.*
