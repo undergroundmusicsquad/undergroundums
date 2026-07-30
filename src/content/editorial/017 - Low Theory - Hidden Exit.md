@@ -1,7 +1,7 @@
 ---
 topLabel: "ENTRY 017"
 title: "Low Theory - Hidden Exit"
-description: "A half-whispered voice, slow guitars, and the feeling of a dream you almost remember."
+description: "A half-whispered voice, and the feeling of a dream you almost remember."
 date: 2026-07-30
 
 category: track-of-the-day
