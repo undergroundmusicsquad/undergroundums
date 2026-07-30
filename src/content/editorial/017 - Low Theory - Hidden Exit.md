@@ -35,7 +35,7 @@ links:
 bottomLabel: "Archive 26"
 ---
 
-**Editor's Note**
+Editor's Note
 
 
 *I honestly thought the track would just stay in that slow, sleepy place. The voice is barely there, the guitars keep slipping in and out, and for some reason it gave me a Twin Peaks feeling — not the obvious spooky part, more like being awake too late in a quiet room. I actually went back because I’d missed how much the song had changed underneath. Then the solo comes in at 2:37, carrying all that quiet tension into a more open, almost cinematic ending.*
