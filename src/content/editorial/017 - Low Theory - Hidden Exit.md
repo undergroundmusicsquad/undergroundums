@@ -1,54 +1,41 @@
 ---
-topLabel: "ENTRY 004"
-title: "Название статьи"
-description: "Короткое описание статьи"
-date: 2026-07-08
+topLabel: "ENTRY 017"
+title: "Low Theory - Hidden Exit"
+description: "A half-whispered voice, slow guitars, and the feeling of a dream you almost remember."
+date: 2026-07-30
 
 category: track-of-the-day
 
 genres:
-  - Postpunk
-  - Darkwave
+  - Dreampop
+  - Psychedelic rock
+  - Shoegaze
+  - Indie rock
 
 hashtags:
-  - postpunk
-  - darkwave
-  - trackoftheday
+  - dreampop
+  - psychedelicrock
+  - indierock
+  - shoegaze
 
-image: "https://example.com/image.jpg"
+image: "https://i.scdn.co/image/ab67616d0000b273f449a4862276508933d9dff9"
 
 featured: true
 draft: false
 
-music:
-  platform: bandcamp
-  placement: hero
-  url: "https://artist.bandcamp.com/track/example"
-  embed: "https://bandcamp.com/EmbeddedPlayer/..."
-
 links:
-  youtube: "https://youtube.com/@artist"
-  soundcloud: "https://soundcloud.com/artist"
-  bandcamp: "https://artist.bandcamp.com"
-  spotify: "https://open.spotify.com/artist/..."
-  instagram: "https://instagram.com/artist"
-  linktree: "https://linktr.ee/artist"
-  website: "https://artist.example.com"
+  youtube: "https://www.youtube.com/watch?v=8xhvnz5GN2I"
+  soundcloud: ""
+  bandcamp: ""
+  spotify: "https://open.spotify.com/track/5tiJYM790TH5ZKkl3FNU42"
+  instagram: "https://www.instagram.com/lowtheory.music"
+  linktree: ""
+  website: ""
 
 bottomLabel: "Archive 26"
 ---
 
-Здесь начинается текст статьи.
+**Editor's Note**
 
-Здесь может находиться [ссылка с названием](https://example.com).
 
-<div class="youtube-embed">
-  <iframe
-    src="https://www.youtube.com/embed/VIDEO_ID"
-    title="YouTube video"
-    loading="lazy"
-    allowfullscreen>
-  </iframe>
-</div>
-
-Этот текст находится после видео и тоже должен попасть в reviewText.
+*I honestly thought the track would just stay in that slow, sleepy place. The voice is barely there, the guitars keep slipping in and out, and for some reason it gave me a Twin Peaks feeling — not the obvious spooky part, more like being awake too late in a quiet room. I actually went back because I’d missed how much the song had changed underneath. Then the solo comes in at 2:37, carrying all that quiet tension into a more open, almost cinematic ending.*
