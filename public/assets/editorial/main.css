@@ -3099,3 +3099,23 @@ body.is-instant::after {
 }
 
 
+/* Editorial article spacing */
+.ums-article-content > p {
+	display: block;
+	width: 100%;
+	margin: 0 0 1.3em 0 !important;
+	line-height: 1.625;
+}
+
+.ums-article-content > p:last-child {
+	margin-bottom: 0 !important;
+}
+
+.ums-article-content > hr {
+	display: block;
+	width: 100%;
+	margin: 2.5rem 0 2rem !important;
+	border: 0;
+	border-top: 1px solid currentColor;
+	opacity: 0.25;
+}
